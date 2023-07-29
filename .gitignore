@@ -1,0 +1,37 @@
+# Node.js and Express specific
+node_modules/
+dist/
+build/
+
+# TypeScript specific
+*.tsbuildinfo
+*.js.map
+*.js
+*.d.ts
+
+# Environment specific
+.env
+.env.*
+
+# IDE specific
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Dependencies that should not be tracked
+package-lock.json
+yarn.lock
+
+#ignore local dbs
+*.db
+*.sqlite
+*.sqlite3
+
+# Ignore any OS-specific files
+.DS_Store
+Thumbs.db
+
+
