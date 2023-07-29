@@ -3,7 +3,6 @@ import { prisma } from "../server";
 import bcrypt from "bcrypt";
 import { rateLimiter } from "../middleware/ratelimiter";
 import { sign } from "jsonwebtoken";
-import ms from "ms";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -55,7 +54,7 @@ authRouter.post("/login", async (req: Request, res: Response) => {
 });
 
 function generateAccessToken(id: string) {
-  return sign({ id: id }, JWT_SECRET, { expiresIn: ms("1y3") / 1000 });
+  return sign({ id: id }, JWT_SECRET, { expiresIn: "1y" });
 }
 
 // function authenticateToken(req: Request, res: Response, next: NextFunction) {

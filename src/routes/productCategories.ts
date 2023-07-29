@@ -27,13 +27,15 @@ productCategoriesRouter.get(
   async (req: Request, res: Response) => {
     const productCategories = await prisma.productCatagory.findMany();
 
-    const response = productCategories.map((productCategory) => {
-      return {
-        id: productCategory.id,
-        name: productCategory.name,
-        description: productCategory.description,
-      };
-    });
+    const response = productCategories.map(
+      (productCategory: { id: any; name: any; description: any }) => {
+        return {
+          id: productCategory.id,
+          name: productCategory.name,
+          description: productCategory.description,
+        };
+      }
+    );
 
     res.status(200).json(response);
   }

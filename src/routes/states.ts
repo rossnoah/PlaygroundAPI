@@ -6,7 +6,7 @@ export const statesRouter = express.Router();
 statesRouter.get("/states", async (req: Request, res: Response) => {
   const states = await prisma.state.findMany();
 
-  states.sort((a, b) => {
+  states.sort((a: { name: number }, b: { name: number }) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -16,13 +16,15 @@ statesRouter.get("/states", async (req: Request, res: Response) => {
     return 0;
   });
 
-  const response = states.map((state) => {
-    return {
-      name: state.name,
-      abbreviation: state.abbreviation,
-      taxRate: state.taxRate,
-    };
-  });
+  const response = states.map(
+    (state: { name: any; abbreviation: any; taxRate: any }) => {
+      return {
+        name: state.name,
+        abbreviation: state.abbreviation,
+        taxRate: state.taxRate,
+      };
+    }
+  );
 
   return res.status(200).json(response);
 });

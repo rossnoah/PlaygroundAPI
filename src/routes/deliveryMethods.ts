@@ -31,14 +31,16 @@ deliveryMethodsRouter.get(
   async (req: Request, res: Response) => {
     const deliveryMethods = await prisma.deliveryMethod.findMany();
 
-    const response = deliveryMethods.map((deliveryMethod) => {
-      return {
-        id: deliveryMethod.id,
-        name: deliveryMethod.name,
-        price: deliveryMethod.price,
-        alwaysTax: deliveryMethod.alwaysTax,
-      };
-    });
+    const response = deliveryMethods.map(
+      (deliveryMethod: { id: any; name: any; price: any; alwaysTax: any }) => {
+        return {
+          id: deliveryMethod.id,
+          name: deliveryMethod.name,
+          price: deliveryMethod.price,
+          alwaysTax: deliveryMethod.alwaysTax,
+        };
+      }
+    );
 
     res.status(200).json(response);
   }

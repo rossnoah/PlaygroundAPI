@@ -40,15 +40,17 @@ companiesRouter.post("/companies", async (req: Request, res: Response) => {
 companiesRouter.get("/companies", async (req: Request, res: Response) => {
   const companies = await prisma.company.findMany();
 
-  const response = companies.map((company) => {
-    return {
-      id: company.id,
-      name: company.name,
-      address: company.address,
-      email: company.email,
-      phone: company.phone,
-    };
-  });
+  const response = companies.map(
+    (company: { id: any; name: any; address: any; email: any; phone: any }) => {
+      return {
+        id: company.id,
+        name: company.name,
+        address: company.address,
+        email: company.email,
+        phone: company.phone,
+      };
+    }
+  );
 
   res.status(200).json(response);
 });
